@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Streamlit Cloud
-        uses: streamlit/streamlit-action@v1
+        uses: streamlit/action@v0.2.0
         with:
           email: ${{ secrets.STREAMLIT_EMAIL }}
           password: ${{ secrets.STREAMLIT_PASSWORD }}
