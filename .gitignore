@@ -1,0 +1,10 @@
+# venv a virtuálne prostredia
+script_a/etf-env/
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Reports, build súbory
+script_a/reports/
