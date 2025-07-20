@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies + coverage tools
         run: |
           pip install --upgrade pip
-          pip install -r script_a/requirements.txt streamlit streamlit
+          pip install -r script_a/requirements.txt streamlit
           pip install pytest pytest-cov codecov
 
       - name: Run tests with coverage
