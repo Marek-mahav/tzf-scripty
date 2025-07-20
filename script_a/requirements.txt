@@ -1,0 +1,8 @@
+pandas
+numpy
+requests
+PyYAML
+matplotlib
+openpyxl
+reportlab
+pyyaml

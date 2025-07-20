@@ -1,0 +1,47 @@
+name: CI & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r script_a/requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          python -m pytest -q
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Streamlit Cloud
+        uses: streamlit/action@v1
+        with:
+          email: ${{ secrets.STREAMLIT_EMAIL }}
+          password: ${{ secrets.STREAMLIT_PASSWORD }}
+

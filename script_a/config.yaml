@@ -1,0 +1,29 @@
+data:
+  demo_n: 30
+  history_days: 365
+  source: "yahoo"
+
+analysis:
+  sharpe_risk_free_rate: 0.01
+
+purge:
+  max_expense_ratio: null
+  min_average_volume: 100000
+  blacklist:
+    - "SPY"
+    - "QQQ"
+
+universe:
+  source: "fmpcloud"
+  api_key: "KA1dy44by2yU3ggHDguAuYyggfC2AYmC"
+
+
+
+decision:
+  max_capital_pct: 0.1
+  min_signal_score: 0.5
+
+reporting:
+  output_dir: "reports/"
+  pdf: true
+  xlsx: true

@@ -1,0 +1,39 @@
+*** Begin Patch
+*** Update File: modules/analysis_manager.py
+@@     metrics_df = metrics_df.fillna(0)
+-    metrics_df = metrics_df.fillna(0)
++    metrics_df = metrics_df.fillna(0)
++    # lowercase all metric column names
++    metrics_df.columns = metrics_df.columns.str.lower()
++    # ensure all three metric columns exist, fill missing with zeros
++    for col in ["volatility","sharpe","var"]:
++        if col not in metrics_df.columns:
++            metrics_df[col] = 0
+
+*** End Patch
+
+*** Begin Patch
+*** Update File: dashboard.py
+@@ def main():
+-    # sliders
+-    vol_sel = st.sidebar.slider("Volatility", vol_min, vol_max, (vol_min, vol_max))
+-    sharpe_sel = st.sidebar.slider("Sharpe", sharpe_min, sharpe_max, (sharpe_min, sharpe_max))
+-    var_sel = st.sidebar.slider("VAR", var_min, var_max, (var_min, var_max))
++    # volatility slider (skip if min == max)
++    if vol_min == vol_max:
++        vol_sel = (vol_min, vol_max)
++    else:
++        vol_sel = st.sidebar.slider("Volatility", vol_min, vol_max, (vol_min, vol_max))
++
++    # sharpe slider (skip if min == max)
++    if sharpe_min == sharpe_max:
++        sharpe_sel = (sharpe_min, sharpe_max)
++    else:
++        sharpe_sel = st.sidebar.slider("Sharpe", sharpe_min, sharpe_max, (sharpe_min, sharpe_max))
++
++    # VAR slider (skip if min == max)
++    if var_min == var_max:
++        var_sel = (var_min, var_max)
++    else:
++        var_sel = st.sidebar.slider("VAR", var_min, var_max, (var_min, var_max))
+*** End Patch

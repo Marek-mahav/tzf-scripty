@@ -1,0 +1,9 @@
+data:
+  history_days: 365
+  source: "yahoo"
+purge:
+  max_expense_ratio: null
+  min_average_volume: 100000
+  blacklist:
+    - "SPY"
+    - "QQQ"
